@@ -9,13 +9,16 @@ CDN for base angular that we are using.
  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.js" charset="utf-8"></script>
  ```
 
+ CDNs are an alternative way to get javascript into our code.  Some advantages they have is they can be cached across sites.  So if another website your user has visited uses the same CDN asset, they could already have it cached, even if they've never visited your site before.
+
 
  # General outline
 
  Create HTML File
 
  Add Angular scripts
- Add css link
+ Add css link to our stylesheet
+ Add scr tag to our app.js
 
  Create cardVierwer app and attach it to the html
 

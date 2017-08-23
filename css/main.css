@@ -20,6 +20,14 @@ body{
 
 }
 
+input {
+  font-size: 2em;
+}
+
+button {
+  font-size: 2em;
+}
+
 .picture{
   height:150px;
   width:190px;

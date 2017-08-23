@@ -10,7 +10,7 @@ angular.module('cardViewer', []).controller('listCtrl', ($scope) => {
 
   function setupDefault(){
     $scope.newPokemon = {
-      name:'Pokemons'
+      name:'Bob'
     }
   }
 })
