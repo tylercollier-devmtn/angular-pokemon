@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html ng-app="cardViewer">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="/css/main.css">
+  </head>
+  <body ng-controller="listCtrl">
+    <div class="filters">
+      Type: <input ng-model="filter.type" placeholder="Type to filter to" ng-model-options="{ debounce: 100 }">
+    </div>
+    <button ng-hide ="addingCards" ng-click = "addingCards = true"> Add New Cards</button>
+    <div ng-show="addingCards" class="addNew" style="display:flex;">
+      <form ng-submit="addPokemon(newPokemon)">
+        Name: <input ng-model="newPokemon.name" placeholder="Name"><br/>
+        Type: <input ng-model="newPokemon.type" placeholder="Type"><br/>
+        <!-- Url: <input ng-model="newPokemon.url" placeholder="URL"><br/> -->
+        Image: <select ng-model="newPokemon.url" ng-options = "i.url as i.name for i in images"> </select><br/>
+        HP: <input ng-model="newPokemon.stats.hp" placeholder="HP"><br/>
+        Atk: <input ng-model="newPokemon.stats.atk" placeholder="ATK"><br/>
+        Def: <input ng-model="newPokemon.stats.def" placeholder="DEF"><br/>
+        <button type="submit">Add New</button>
+      </form>
+      <div class="card">
+        <div class="name"> {{newPokemon.name}}</div>
+
+        <div class="picture" ng-style="{backgroundImage:'url(' + newPokemon.url + ')'}"/> </div>
+        <div class="stats">
+          <div class ="stat" ng-repeat="(stat, value) in newPokemon.stats">
+            {{stat.toUpperCase()}}: {{value}}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cardList">
+      <div class="card slideInFromLeft" ng-repeat="card in cards | filter:filter" ng-click="selected=!selected" ng-class="{selected:selected}">
+        <div class="name"> {{card.name}}</div>
+
+        <div class="picture" ng-style="{backgroundImage:'url({{card.url}})'}"/> </div>
+        <div class="stats">
+          <div class ="stat" ng-repeat="(stat, value) in card.stats">
+            {{stat.toUpperCase()}}: {{value}}
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.js" charset="utf-8"></script>
+    <script src="app/app.js" charset="utf-8"></script>
+  </body>
+</html>
