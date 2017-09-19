@@ -123,6 +123,13 @@ select{
   padding-left: 15px;
 }
 
+.filter{
+  width:300px;
+  display: inline-block;
+  position: relative;
+  top: 2px;
+}
+
 .filters{
   padding: 10px;
 }
