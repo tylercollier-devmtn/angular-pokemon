@@ -9,12 +9,17 @@
 
   <body ng-controller="cardCtrl">
     {{ name }}
-    <input type="text" placeholder="Pokemon Name" ng-model="newCard.name"/>
-    <input type="text" placeholder="Pokemon Image" ng-model="newCard.url"/>
-    <input type="number" placeholder="Pokemon HP" ng-model="newCard.stats.hp"/>
-    <input type="number" placeholder="Pokemon ATK" ng-model="newCard.stats.atk"/>
-    <input type="number" placeholder="Pokemon DEF" ng-model="newCard.stats.def"/>
-    <button ng-click="addCard(newCard)"> Add New Card </button>
+    <button ng-click="addingCard = !addingCard"> Toggle Add Card </button>
+    <div ng-show="addingCard">
+      <input type="text" placeholder="Pokemon Name" ng-model="newCard.name"/>
+
+      <input type="text" placeholder="Pokemon Image" ng-model="newCard.url"/>
+      <select ng-model="newCard.url" ng-options="image.url as image.name for image in allImages"></select>
+      <input type="number" placeholder="Pokemon HP" ng-model="newCard.stats.hp"/>
+      <input type="number" placeholder="Pokemon ATK" ng-model="newCard.stats.atk"/>
+      <input type="number" placeholder="Pokemon DEF" ng-model="newCard.stats.def"/>
+      <button ng-click="addCard(newCard)"> Add New Card </button>
+
       <div class="card">
         <div class="name"> {{ newCard.name }} </div>
         <div class="picture" ng-style="{backgroundImage: 'url(' + newCard.url +')'}"> </div>
@@ -24,16 +29,21 @@
           Def:{{newCard.stats.def}}</br>
         </div>
       </div>
+    </div>
 
-
+    <!-- Filter: <input ng-model="myFilter"/> -->
+    Name Filter: <input ng-model="myFilter.name"/>
+    Type Filter: <input ng-model="myFilter.type"/>
     <div class="cardList">
-      <div class="card" ng-repeat="card in cards">
+      <div class="card" ng-repeat="(index, card) in cards | filter: myFilter">
         <div class="name"> {{ card.name }} </div>
         <div class="picture" ng-style="{backgroundImage: 'url(' + card.url +')'}"> </div>
         <div class="stats">
           HP:{{card.stats.hp}}</br>
           ATK:{{card.stats.atk}}</br>
           Def:{{card.stats.def}}</br>
+
+          <button ng-click="removeCard(card)"> Remove Card </button>
         </div>
       </div>
     </div>
@@ -45,6 +55,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.js" charset="utf-8"></script>
     <script src="app/app.js" charset="utf-8"></script>
+    <script src="app/controllers/card-ctrl.js" charset="utf-8"></script>
 
     </script>
   </body>
