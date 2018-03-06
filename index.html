@@ -132,6 +132,9 @@
                 We specify the variables to hold the key and value.  In this
                 case we named the key as stat, and value as value.  We are looping
                 over all the properties in the card's stats object. -->
+          <div class="stat" >
+            TYPE: {{card.type | uppercase }}
+          </div>
           <div class="stat" ng-repeat ="(stat, value) in card.stats">
             <!-- Angular has a built in uppercase function that we can run our
                 stat names through. Other such filters include lowercase,

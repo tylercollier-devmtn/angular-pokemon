@@ -29,9 +29,14 @@ CDN for base angular that we are using.
 Structure of card for styles.
 ```html
  <div class="card">
-  <div class="name"><name>
-  <div class="picture"><picture>
-  <div class="stats"><stats>
+  <div class="name"> name </div>
+  <div class="picture"> picture </div>
+  <div class="stats">
+    <div class="stat"> type </div>
+    <div class="stat"> hp </div>
+    <div class="stat"> atk </div>
+    <div class="stat"> def </div>
+  </div>
  <card>
 ```
 ```javascript
