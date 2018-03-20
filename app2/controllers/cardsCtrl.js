@@ -1,5 +1,12 @@
 angular.module('pokemonfoo').controller('cardsCtrl', function($scope) {
   $scope.cards = getCards();
+  $scope.remove = function(spot) {
+    $scope.cards.splice(spot, 1);
+  };
+  $scope.add = function(newCard) {
+    $scope.cards.push(newCard);
+    $scope.newCard = {}
+  }
 });
 
 function getCards(){

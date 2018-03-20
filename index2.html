@@ -10,10 +10,20 @@
 <body>
   <h1>Pokemon Foo</h1>
   <div class="filter">
-    Filter pokemon by name: <input ng-model="myFilter">
+    <div>Filter pokemon by name: <input ng-model="myFilter.name"></div>
+    <div>Filter pokemon by type: <input ng-model="myFilter.type"></div>
     <div class="filter-debug">myFilter: {{myFilter}}</div>
   </div>
   <div ng-controller="cardsCtrl">
+    <div class="addNew">
+      <h2>New card</h2>
+      <div>Name: <input ng-model="newCard.name"></div>
+      <div><button ng-click="add(newCard)">Add card</button></div>
+      <div class="card">
+        <div class="name">{{newCard.name}}</div>
+      </div>
+      <div class="newcard-debug">newCard: {{newCard}}</div>
+    </div>
     <div class="cardList">
       <div class="card" ng-repeat="card in cards | filter:myFilter">
         <div class="name">{{card.name}}</div>
@@ -26,6 +36,7 @@
             {{key | uppercase }}: {{value}}
           </div>
         </div>
+        <button ng-click="remove($index)">Delete</button>
       </div>
     </div>
   </div>
