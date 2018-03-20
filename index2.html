@@ -1,18 +1,37 @@
 <!DOCTYPE html>
-<html lang="en" ng-app>
+<html lang="en" ng-app="pokemonfoo">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Pokemon Foo</title>
+  <link href="./css/main.css" rel="stylesheet">
 </head>
 <body>
-  Type something: <input ng-model="myValue">
-
-  <div>You typed: {{myValue.toLowerCase()}}</div>
-
-  <div ng-if="myValue == 'a'">Hey, you typed some stuff</div>
+  <h1>Pokemon Foo</h1>
+  <div class="filter">
+    Filter pokemon by name: <input ng-model="myFilter">
+    <div class="filter-debug">myFilter: {{myFilter}}</div>
+  </div>
+  <div ng-controller="cardsCtrl">
+    <div class="cardList">
+      <div class="card" ng-repeat="card in cards | filter:myFilter">
+        <div class="name">{{card.name}}</div>
+        <div class="picture" ng-style='{backgroundImage:"url(" + card.url + ")"}'></div>
+        <div class="stats">
+          <div class="stat">
+            TYPE: {{card.type | uppercase}}
+          </div>
+          <div class="stat" ng-repeat="(key, value) in card.stats">
+            {{key | uppercase }}: {{value}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.js" charset="utf-8"></script>
+  <script src="./app2/app.js"></script>
+  <script src="./app2/controllers/cardsCtrl.js"></script>
 </body>
 </html>
